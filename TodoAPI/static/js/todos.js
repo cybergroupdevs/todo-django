@@ -22,7 +22,6 @@ window.onload = function() {
         url: "http://127.0.0.1:8000/todos/",
         method: "POST",
         data: {
-          csrfmiddlewaretoken: '{{ csrf_token }}',
           text: inputText.value
         },
         success: function() {
@@ -84,24 +83,6 @@ window.onload = function() {
     todoListHtml.appendChild(newListItem);
   }
 
-  
-  // using jQuery
-  function getCookie(name) {
-      var cookieValue = null;
-      if (document.cookie && document.cookie != '') {
-          var cookies = document.cookie.split(';');
-          for (var i = 0; i < cookies.length; i++) {
-              var cookie = jQuery.trim(cookies[i]);
-              // Does this cookie string begin with the name we want?
-              if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                  console.log(cookieValue)
-                  break;
-              }
-          }
-      }
-      return cookieValue;
-  }
 
   function liClickEvent(event) {
     const todo = myTodoList.todos.filter(todo => todo.id == event.currentTarget.getAttribute("data-id"))[0]
